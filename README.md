@@ -4,4 +4,3 @@ This is a Hackers at Cambridge workshop. This repository holds all the content t
 ```
 hackersatcambridge.com/workshops/emacs
 ```
-(replacing `<repository_name>` with the name of this repository)

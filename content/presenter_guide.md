@@ -4,6 +4,7 @@
   Optional - Create a presenter guide only when content exists that can't be gleaned from other files
  -->
 
-Work through the slides, focus on getting to the practical segments
+Work through the org-mode file, encourage trying the different commands and tools
 
-At the end, ask them to submit pull requests to the main repo for a bit of fun
+The main issue with this workshop is that the very basics of Emacs aren't the most convincing.
+Try to keep a focus as to why all of the excessive number of commands and features are actually worth it.

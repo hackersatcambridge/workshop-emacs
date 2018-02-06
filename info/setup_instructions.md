@@ -1,1 +1,1 @@
-Make sure Emacs is installed, preferably version 24 or later. Clone or download this repository https://github.com/MaxVigdorchik/Emacs-Workshop which contains some example files to mess with.
+Make sure Emacs is installed, preferably version 24 or later. Clone or download this repository https://github.com/hackersatcambridge/workshop-emacs which contains some example files to mess with in the examples folder.

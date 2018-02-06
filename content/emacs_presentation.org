@@ -1,0 +1,304 @@
+#+TITLE: Introduction to Emacs
+#+AUTHOR: Max Vigdorchik
+#+OPTIONS: toc:nil
+
+* Introduction
+** Why Emacs?
+*** The Most Customize-able editor
+*** Design philosophy focused on efficiency and versatility 
+*** 40 years of active development means its functionality is mature and well designed
+*** Tons of extremely well developed plugins for basically every use case
+*** Designed to be self documenting, so you can learn as you use it
+*** Emacs can edit most of its own code from within its editor, without ever exiting
+** Disclaimer
+*** Emacs is complicated, and has many more functions than you could ever reasonably learn
+*** Using Emacs efficiently requires you to learn tons of keyboard shortcuts, and this presentation contains many
+**** Unless you have a perfect memory, you will forget almost all of them
+**** As you use Emacs for your own actual work, you will remember the functionality that you use most
+**** If you discover you are doing some repetitive task while coding, 100% chance Emacs has a solution!     
+* Basic Commands
+** How To Get Help
+*** To find out what a key binding does, use C-h k
+*** To find out what a certain function does, use C-h f
+*** To learn about the help features in general, use C-h ?
+** How to Read Emacs Key Bindings 
+*** All default Emacs commands use 1 or 2 modifier keys, called Control and Meta
+*** By default, Control is bound to Ctrl and Meta is bound to Alt. (Sometimes Mac users use command as Meta) 
+*** Emacs also offers 2 other modifiers not used by default called Super and Hyper, so you can bind a command to hyperspace!
+*** The reason for these weird Meta, Super, Hyper key stuff is due to the fact Emacs was originally made for Lisp machines, with strange keyboards
+*** C-x means "press x while holding control"
+*** M-x means "press x while holding meta"
+**** An alternate way to press M-x is to first press escape then press x, which is especially useful when using Emacs on really old systems
+*** C-M-x is just pressing x while holding both control and meta
+*** Some commands will require you to type text after, which will be prompted on the bottom bar.
+** Basic Movement
+*** Characters, Words, and Lines
+**** Forward Char: C-f
+**** Backward Char: C-b
+**** Next Line: C-n
+**** Previous Line: C-p
+**** Beginning of Line: C-a
+**** End of Line: C-e
+**** TODO Try moving around whatever file you have open, keyboard only
+**** Delete Character: C-d 
+**** Forward Word: M-f
+**** Backward Word: M-b
+**** Delete Word: M-d
+*** S-Expressions (Sexp)
+**** Represent all forms of balanced pairs such as (asda) {asdads} "adsada", etc.
+**** Sometimes language modes may define what is meant by an Sexp
+***** e.g. Python mode may treat single quotes as a balanced pair whole while Lisp would not
+**** C-M-f and C-M-b moves across an S-expression 
+**** C-M-n and C-M-p will move across the next/previous set of balanced expressions
+**** The main thing to notice is that C- corresponds to characters, M- to words, and C-M- to Sexp
+*** Cut and Paste (Kill and Yank)
+**** Emacs pre-dates the idea of cut, copy, and paste as Ctrl-{x,c,v}
+**** The hotkeys Emacs uses instead were originally chosen for efficiency, so it may seem odd by modern standards
+***** If you really badly want to use C-x, C-v, etc. something called CUA mode exists just for you
+***** From here on all hotkeys will assume CUA mode was not enabled 
+**** Kill is equivalent to cut, Yank = paste, and Copy is equivalent to a kill then yank (sort of)
+**** Instead of a clipboard, Emacs has a kill ring storing the last (default of 60) kills
+**** You can select a region by placing a mark and then moving your cursor
+**** Place mark on cursor: C-Space
+**** Place rectangular mode mark: C-x Space
+**** Kill marked region: C-w
+**** Kill to end of line: C-k
+**** Kill character: C-d
+**** Kill word: M-d
+**** Kill sentence: M-k
+**** Kill Sexp: C-M-k
+**** "Copy" marked region: M-w 
+**** Yank: C-y
+**** Yank from kill ring: M-y
+*** Incremental Search
+**** There are so many different (most useful) key bindings I can only mention the basics
+**** Search Forward: C-s expression-to-search (repeated C-s goes through next words)
+**** Search Backward: C-r expression-to-search
+**** Search Forward with Regexp (Seriously try to get used to regex its worth it): C-M-s
+**** Cancel Search (and generally cancel most things), returning to start: C-g
+**** Exit search on current word: RET
+**** While searching, add rest of word to search string: C-w
+**** Query Replace (like find and replace): M-% and use y or n to confirm replacements
+**** Query Replace with Regexp: C-M-%
+*** Misc. Bonus Commands That May Be Useful
+**** Go to end of buffer: M->
+**** Go to start of buffer: M-<
+**** Scroll up a page: C-v
+**** Scroll down a page: M-v
+**** Center screen on cursor: C-l (multiple uses cycles putting cursor on top and bottom of screen)
+***** Reposition window by having emacs guess what will show the most useful information: C-M-l
+**** Save!!!!!! : C-x C-s
+**** Open File!!!!!! : C-x C-f
+**** Repeat previous command: C-x z (subsequently pressing z continues repeating)
+**** Attempt to autocomplete based on what is in current buffer: M-/ (some modes overwrite this to make it smarter)
+**** Exchange cursor with mark: C-x C-x
+** Buffers and Windows (and why they are better than tabs)
+*** Emacs does not use tabs like other editors, instead all text is stored in a "buffer"
+*** Emacs may have many buffers open, and they can be viewed via a "window"
+*** All buffers usually have a name, and you can switch to buffers by name
+**** This means no matter how many buffers you have open, it is just as easy to find the right one
+**** You can rename your current buffer with: M-x rename-buffer RET
+*** The line of text at the bottom that opens when you use commands like search is called the mini buffer
+*** The flexibility offered by using buffers together with windows is MUCH better than most IDEs
+**** Change buffer: C-x b
+**** Kill buffer: C-x k
+**** Split window horizontally: C-x 2
+**** Split window vertically: C-x 3
+**** Close all windows but current: C-x 1
+**** Close current window: C-x 0
+**** Swap cursor to next window: C-x o
+**** Enlarge window vertically and horizontally respectively: C-x }, C-x ^
+** Undo in Emacs (If you don't like this undo-tree is a great alternative, especially for former Vim users)
+*** All actions in Emacs are stored in a stack, and undo pops the previous action off the stack
+**** Undo: C-x u or C-_
+*** In order to allow undoing multiple things, a continuous sequence of undoes ignores previous undoes
+**** Commands that do not actually edit the buffer are never undone, but they DO remain in the stack
+**** This means that to undo an undo, you must first break the chain of undoes with another action
+**** The most common way of doing this is by just pressing C-f followed by and undo
+*** Undo tree is a plugin that copies Vim's version of undo, using a tree instead of a stack
+**** It also has a dedicated redo button saving the confusion with C-f
+** Giving a Parameter to Commands (Universal Argument!)
+*** Every hotkey in Emacs corresponds to a function that can be used with M-x function-name RET
+*** Most functions don't take a parameter, but can take a Universal argument N to repeat N times 
+**** To give a command a universal argument of N: C-u N (insert command here)
+***** Examples: C-u 3 C-f moves forward 3 characters. C-u 13 M-c will capitalize the next 13 words
+**** A shorthand for C-u N is just C-[that #] (e.g C-3 = C-u 3). C-u on its own is the same as C-u 4
+**** Occasionally some functions will take a parameter to do something different than repeat
+***** The help for any given function will specify if it takes an argument (accessed with C-h f)
+****** These functions will have an &optional tag and will clarify in description what it does
+***** Usually in these cases passing any argument regardless of value will give some alternate behavior
+* Editing Modes
+** Major Modes
+*** No matter what Emacs runs with exactly 1 major mode, defaulted to "Fundamental Mode"
+**** In practice fundamental mode is never used, Emacs has a mode for just about everything from poetry to SystemVerilog
+**** Emacs will automatically pick the mode based on file type, but can be changed manually with M-x modename-mode 
+*** The Major Mode determines the overall behavior of the editor
+**** It usually enables many new keybindings specific to the mode, and replaces others (e.g. changes newline behavior for Python)
+**** Many modes will offer more advanced features such as Org mode which has headings and can track your calender/ do much more!
+** Minor Modes
+*** Unlike major modes, you can have any number of minor modes enabled
+*** To display all the information about your current modes, press C-h m
+*** Most minor modes are disabled by default, exceptions include Transient Mark Mode as mentioned before
+*** Some useful default minor modes:
+**** linum-mode for displaying line numbers
+**** Electric-Pair and Electric-indent gives IDE like indenting and balanced pairs
+**** Transient-Mark which allows placing a mark to select a region
+**** Show-Paren highlights matching parenthesis   
+*** Some minor modes are global meaning always active, others are local to a certain buffer
+*** A common way of using minor modes is enabling them only for certain major modes, we will see how to do this soon
+* Advanced Commands and Features
+** Macros
+*** Macros allow you to record actions to replay later, which can be extremely useful and time saving
+*** To begin, just press C-x ( and Emacs will record all further actions. C-x ) ends recording
+*** To then execute the recorded macro, use C-x e
+**** This works really well in conjunction with the Universal Parameter C-u to repeat the macro
+**** You can then give the macro a name for the session with C-x C-k n, or bind it to a key with C-x C-k b
+**** After doing that, M-x insert-kbd-macro will create a Lisp function for the macro which you can store
+** Regular Expressions
+*** Most often used alongside searches or Query replace (remember adding Meta key enables Regex)
+*** Without going into compatibility theory, regular expression allow defining strings by their structure, not just their content
+*** The simplest regular expression is just normal characters, which only matches that exact sequence, nothing special
+*** Regular expressions are extremely useful for programming in general, and the following is just a basic introduction: 
+**** ? means the preceding character is optional, or in other words is repeated 0 or 1 times
+***** "maths?" will match with both "math" and "maths"
+**** + means the preceding character can be repeated
+***** "hey+" matches "heyyyy" and "hey" but not "he"
+**** * means the preceding character can be repeated AND is optional
+**** ^ and ? mean beginning of line and end of line respectively
+**** [...] will match with any of the characters in the brackets 
+***** "[abc]" matches "a" and "c", but not "d" or "aa"
+***** "[abc]*" will match "aa" though
+**** [^...] matches anything not in the brackets
+**** a "." matches any character at all
+***** "letter." matches with "lettera" and "letterq" and "letter"
+**** Adding a \ before one of the above special characters will treat it like a normal character to search for
+**** There are many more, but you will need to discover those on your own (trust me it is worth doing)
+** Directory Editor
+*** Accessed with M-x dired
+*** Once in dired Emacs bindings all take a different form, press h to access the help page
+*** You can mark various files and folders for future commands with m, and for deletion with d
+**** x will then delete files marked for deletion, and any other command will affect those marked with m
+*** Dired can be turned into a write enabled buffer with C-x C-q (M-x dired-toggle-read-only) 
+**** This allows you to use all of the editing capacity of Emacs on directories instead of files!
+** Using Linux commands within Emacs
+*** Many common programming work flows involve compiling or running code on the command line
+*** The most general tool Emacs offers by default is actually running the shell in Emacs directly
+**** M-x shell opens up your default system shell within Emacs that can be used freely 
+**** There are also alternative functions for running shell commands individually such as shell-command (M-!)
+*** Emacs also supports debugging and compiling tools from within Emacs
+**** M-x compile will offer you a choice of compile command (default: make -k), which can be re-invoked with M-x recompile
+**** M-x gdb will allow you to run gbd for debugging directly within Emacs as well
+*** Lisp execution is direction supported within Emacs buffers
+*** Most other languages such as Python have plugins that enable similar IDE-like integration
+*** Org mode actually lets you run code from most languages directly in the buffer, making it the best implementation of literate programming
+#+BEGIN_SRC python
+mylist = [i**2 for i in range(1,10)]
+return mylist #By default org mode treats the code block as a single function, but that can be changed
+#+END_SRC
+
+#+RESULTS:
+| 1 | 4 | 9 | 16 | 25 | 36 | 49 | 64 | 81 |
+
+#+BEGIN_SRC perl6
+my $var = 1;
+my $var2 = 12;
+return $var + $var2;
+#+END_SRC
+
+#+RESULTS:
+: 13
+
+#+BEGIN_SRC elisp
+(+ (* 5 5) (+ 192 17))
+#+END_SRC
+
+#+RESULTS:
+: 234
+
+** Tags 
+*** Emacs can scan source files to create a TAGS file, keeping track of variable names, definitions, etc.
+*** This table can be used for navigating source code in a single file or in a project, as well as refactoring and more
+*** To create a TAGS table you need either an external program (etags,ctags,global, and more) or an emacs plugin called ggtags which extends etags 
+**** This can be a little tricky to setup but is absolutely worth it! Look up Emacs ggtags for detailed instructions if you want to go that route.
+**** Regardless of how you create the TAGS file (or GTAGS file in the case of ggtags), Emacs can make use of it.
+*** To find other instances of the variable on your cursor use M-.
+* Basic ELisp and Customizing Emacs
+** Emacs Under the Hood
+*** The core of Emacs is written in C, and many of the most basic functions (like C-f) come from C code
+*** Pretty much everything else is written in Lisp, which can then call C functions as needed
+*** Whenever Emacs starts up, it will run an initialization file called (by default) init.el
+*** The easiest way to find and edit this file is with M-: (find-file user-init-file) RET
+** Structure of init.el
+*** Structured like normal programming language, each line runs one after the next
+*** The init file will set relevant variables, enable plugins and modes, and define functions you can use 
+*** Basically all of these actions are done with one of a handful of lisp functions
+** Most Useful Functions for Customizing Emacs
+*** All of these functions can be looked up with C-h f function-name , and any that aren't C code and be edited directly from there (but please don't)
+*** Semicolon ; comments lines
+*** setq: Called with (setq Symbol Variable) and it puts the value of Variable into Symbol
+#+BEGIN_SRC elisp
+;Tell Projectile, a project manager, to use Ivy for autocompletes
+(setq projectile-completion-system 'ivy)
+#+END_SRC
+*** global-set-key: allows you to globally reassign hotkeys: (global-set-key KEY 'FUNCTION-NAME)
+**** Note that when you use a name in Lisp, a single quote before it means use this functions name
+**** Without the semicolon, it will assume your function is a variable, and try (and fail) to access it.
+**** Example: 
+#+BEGIN_SRC elisp
+(global-set-key (kbd "C-f") 'backward-char) ;Ruin someones day
+#+END_SRC
+*** require: It will load a feature (i.e. plugin) from the default load path
+**** Most use cases are simple, just download a plugin and add a require statement to init.el
+**** For example, Ivy plugin is enabled with: 
+
+#+BEGIN_SRC elisp
+(require 'ivy)
+#+END_SRC
+
+*** add-hook: This will allow you to run a function whenever a given event or mode is loaded
+**** The most common use case is enabling a minor mode from a plugin or otherwise only run for a given language
+**** e.g. if I want structured haskell mode to turn on whenever I use haskell: 
+#+BEGIN_SRC elisp
+(add-hook 'haskell-mode-hook 'structured-haskell-mode)
+#+END_SRC
+**** Most of the time you will use this when following installation instructions for some plugin
+*** lambda: Lisp is a functional language, so you can create anonymous one time use functions with lambda
+**** This is most useful when you want to run a function with a parameter with something like add-hook, or run multiple functions
+#+BEGIN_SRC elisp
+(add-hook 'haskell-mode-hook (lambda () (haskell-indentation-mode 0)) ;;Disable haskell indentation mode
+#+END_SRC
+** The Package Manager
+*** Emacs comes with a built in package manager to handle installing plugins
+*** In order to actually download new plugins and keep them up to date, need an online repository
+*** The most popular one, far and away, is MELPA, basically everything you will ever want is there
+**** You need to tell Emacs to use MELPA in the init.el file, and its done for you
+*** Most of the time, installing a plugin is as easy as M-x package-install RET package-name
+*** A list of all packages on MELPA and options to install, uninstall, etc with M-x package-list-packages
+*** Occasionally some packages will not be hosted on MELPA, and will have their own instructions
+** Learning a New Programming Language is too Much Effort for an Editor
+*** Don't worry! Pretty much anything you will ever put in init.el will be from stackoverflow or similar
+*** You will most likely start with a near barebones Emacs, and then build up from there.
+*** A good way to get started customizing is googling something like "Emacs for c++"
+* Some Plugin Suggestions
+** Ivy
+*** So useful I included it in the init.el that was distributed
+** Org Mode
+*** Does basically everything organization related, and it is how this presentation was made
+*** Also allows literate programming, which was shown in some other portions of the presentation
+*** Can use it to create really good LaTeX documents without the pain of LaTeX, I do all reports this way
+*** This mode is immensely powerful, and its features were barely touched on
+** EVIL Mode
+*** Its a Vim compatibility layer, giving lots of Vim features including but not limited to Vim bindings
+** Company
+*** This is a framework for text completion, and many other plugins rely on it
+** Projectile
+*** This plugin keeps track of projects and lets you navigate and refactor files easily
+** ggtags
+*** Mentioned earlier, it is basically a massive improvement on standard tags, but only for a few languages
+** Magit
+*** The only frontend for git that is actually more efficient than the command line
+** Yasnippet
+*** Lets you expand common statements like for loops and fill in the gaps
+** Many Many More
+*** There are tons of language specific plugins and other fun stuff that can be ve
+
