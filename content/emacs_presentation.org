@@ -31,6 +31,9 @@
 **** An alternate way to press M-x is to first press escape then press x, which is especially useful when using Emacs on really old systems
 *** C-M-x is just pressing x while holding both control and meta
 *** Some commands will require you to type text after, which will be prompted on the bottom bar.
+** Two Extremely Useful Commands
+**** Save!!!!!! : C-x C-s
+**** Open File!!!!!! : C-x C-f
 ** Basic Movement
 *** Characters, Words, and Lines
 **** Forward Char: C-f
@@ -70,6 +73,7 @@
 **** "Copy" marked region: M-w 
 **** Yank: C-y
 **** Yank from kill ring: M-y
+*** TODO Get a hang of yank and kill, try moving around function definitions in one of the source files
 *** Incremental Search
 **** There are so many different (most useful) key bindings I can only mention the basics
 **** Search Forward: C-s expression-to-search (repeated C-s goes through next words)
@@ -87,8 +91,6 @@
 **** Scroll down a page: M-v
 **** Center screen on cursor: C-l (multiple uses cycles putting cursor on top and bottom of screen)
 ***** Reposition window by having emacs guess what will show the most useful information: C-M-l
-**** Save!!!!!! : C-x C-s
-**** Open File!!!!!! : C-x C-f
 **** Repeat previous command: C-x z (subsequently pressing z continues repeating)
 **** Attempt to autocomplete based on what is in current buffer: M-/ (some modes overwrite this to make it smarter)
 **** Exchange cursor with mark: C-x C-x
@@ -108,6 +110,8 @@
 **** Close current window: C-x 0
 **** Swap cursor to next window: C-x o
 **** Enlarge window vertically and horizontally respectively: C-x }, C-x ^
+*** TODO Open up every single file in examples to a buffer, and have at least 3 open at the same time. 
+*** TODO Now add a line of text to every single file (e.g. a code comment) without touching your mouse
 ** Undo in Emacs (If you don't like this undo-tree is a great alternative, especially for former Vim users)
 *** All actions in Emacs are stored in a stack, and undo pops the previous action off the stack
 **** Undo: C-x u or C-_
@@ -127,6 +131,7 @@
 ***** The help for any given function will specify if it takes an argument (accessed with C-h f)
 ****** These functions will have an &optional tag and will clarify in description what it does
 ***** Usually in these cases passing any argument regardless of value will give some alternate behavior
+*** TODO Quickly undo all changes you made to one of the buffers using a universal parameter
 * Editing Modes
 ** Major Modes
 *** No matter what Emacs runs with exactly 1 major mode, defaulted to "Fundamental Mode"
@@ -138,6 +143,7 @@
 ** Minor Modes
 *** Unlike major modes, you can have any number of minor modes enabled
 *** To display all the information about your current modes, press C-h m
+*** TODO Make a new file, and copy in every single mode you have enabled into that file
 *** Most minor modes are disabled by default, exceptions include Transient Mark Mode as mentioned before
 *** Some useful default minor modes:
 **** linum-mode for displaying line numbers
@@ -146,6 +152,8 @@
 **** Show-Paren highlights matching parenthesis   
 *** Some minor modes are global meaning always active, others are local to a certain buffer
 *** A common way of using minor modes is enabling them only for certain major modes, we will see how to do this soon
+*** To enable or disable modes manually, simply use M-x mymode-mode
+*** TODO Try disabling and then re-enabling Transient Mark Mode, and see how it changed the behavior of C-Space
 * Advanced Commands and Features
 ** Macros
 *** Macros allow you to record actions to replay later, which can be extremely useful and time saving
