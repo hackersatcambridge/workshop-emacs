@@ -31,9 +31,10 @@
 **** An alternate way to press M-x is to first press escape then press x, which is especially useful when using Emacs on really old systems
 *** C-M-x is just pressing x while holding both control and meta
 *** Some commands will require you to type text after, which will be prompted on the bottom bar.
-** Two Extremely Useful Commands
+** Three Extremely Useful Commands
 **** Save!!!!!! : C-x C-s
 **** Open File!!!!!! : C-x C-f
+**** Auto-complete: Tab when used with other commands, or M-/ in a buffer!
 ** Basic Movement
 *** Characters, Words, and Lines
 **** Forward Char: C-f
@@ -94,6 +95,7 @@
 **** Repeat previous command: C-x z (subsequently pressing z continues repeating)
 **** Attempt to autocomplete based on what is in current buffer: M-/ (some modes overwrite this to make it smarter)
 **** Exchange cursor with mark: C-x C-x
+*** NOTE: Linux Terminal by default actually uses many of these movement bindings!
 ** Buffers and Windows (and why they are better than tabs)
 *** Emacs does not use tabs like other editors, instead all text is stored in a "buffer"
 *** Emacs may have many buffers open, and they can be viewed via a "window"
@@ -180,7 +182,10 @@
 **** a "." matches any character at all
 ***** "letter." matches with "lettera" and "letterq" and "letter"
 **** Adding a \ before one of the above special characters will treat it like a normal character to search for
+**** \| is an or, treated like an XOR of the two expression.
 **** There are many more, but you will need to discover those on your own (trust me it is worth doing)
+*** TODO Open up README.md and fix it so that the start of every sentence is capitalized. Try to do it with as few keys as possible or as fast as possible!
+*** TODO Go into columnar_transposition_cipher.java and try to improve its readability by adding a space to  either side of operators (e.g. 1>2 becomes 1 > 2)
 ** Directory Editor
 *** Accessed with M-x dired
 *** Once in dired Emacs bindings all take a different form, press h to access the help page
@@ -188,15 +193,18 @@
 **** x will then delete files marked for deletion, and any other command will affect those marked with m
 *** Dired can be turned into a write enabled buffer with C-x C-q (M-x dired-toggle-read-only) 
 **** This allows you to use all of the editing capacity of Emacs on directories instead of files!
+*** TODO Try navigating the files using dired. Then make a new copy of every file, and add a ".old" ending to the old ones
 ** Using Linux commands within Emacs
 *** Many common programming work flows involve compiling or running code on the command line
 *** The most general tool Emacs offers by default is actually running the shell in Emacs directly
 **** M-x shell opens up your default system shell within Emacs that can be used freely 
 **** There are also alternative functions for running shell commands individually such as shell-command (M-!)
+**** TODO Try running game_of_life.py if you have python3 installed (it requires a number as a parameter)
 *** Emacs also supports debugging and compiling tools from within Emacs
 **** M-x compile will offer you a choice of compile command (default: make -k), which can be re-invoked with M-x recompile
 **** M-x gdb will allow you to run gbd for debugging directly within Emacs as well
 *** Lisp execution is direction supported within Emacs buffers
+**** C-x C-e Will print the result of a lisp expression to mini buffer (* 10 5)
 *** Most other languages such as Python have plugins that enable similar IDE-like integration
 *** Org mode actually lets you run code from most languages directly in the buffer, making it the best implementation of literate programming
 #+BEGIN_SRC python
@@ -229,7 +237,10 @@ return $var + $var2;
 *** To create a TAGS table you need either an external program (etags,ctags,global, and more) or an emacs plugin called ggtags which extends etags 
 **** This can be a little tricky to setup but is absolutely worth it! Look up Emacs ggtags for detailed instructions if you want to go that route.
 **** Regardless of how you create the TAGS file (or GTAGS file in the case of ggtags), Emacs can make use of it.
+**** You very likely have a tool like etags already installed if you are on Linux
 *** To find other instances of the variable on your cursor use M-.
+*** Tags tables will also be used for things like autocomplete if available. 
+*** In my experience, tools like ggtags are much nicer than default tags, we will discuss plugins in the next section
 * Basic ELisp and Customizing Emacs
 ** Emacs Under the Hood
 *** The core of Emacs is written in C, and many of the most basic functions (like C-f) come from C code
@@ -237,6 +248,7 @@ return $var + $var2;
 *** Whenever Emacs starts up, it will run an initialization file called (by default) init.el
 *** The easiest way to find and edit this file is with M-: (find-file user-init-file) RET
 ** Structure of init.el
+*** TODO Open up the init.el file included to get an idea of what it looks like
 *** Structured like normal programming language, each line runs one after the next
 *** The init file will set relevant variables, enable plugins and modes, and define functions you can use 
 *** Basically all of these actions are done with one of a handful of lisp functions
@@ -275,6 +287,7 @@ return $var + $var2;
 #+BEGIN_SRC elisp
 (add-hook 'haskell-mode-hook (lambda () (haskell-indentation-mode 0)) ;;Disable haskell indentation mode
 #+END_SRC
+**** Most of the time, passing a parameter of 0 to a function that enables a mode will disable it
 ** The Package Manager
 *** Emacs comes with a built in package manager to handle installing plugins
 *** In order to actually download new plugins and keep them up to date, need an online repository
@@ -283,6 +296,14 @@ return $var + $var2;
 *** Most of the time, installing a plugin is as easy as M-x package-install RET package-name
 *** A list of all packages on MELPA and options to install, uninstall, etc with M-x package-list-packages
 *** Occasionally some packages will not be hosted on MELPA, and will have their own instructions
+*** TODO Copy the contents of the included init.el into your real init file. Find it with M-: (find-file user-init-file) RET
+*** TODO Install the package "solarized-theme", "ivy" and "counsel" and "flx" and uncommon the lines in init corresponding to them
+**** You may need to run M-x package-list-packages RET to refresh the package archives.
+*** TODO Change the init file so that line numers DON'T show up in org-mode (i.e. files ending in .org like this presentation)
+#+BEGIN_SRC elisp
+;;One possible way to do that
+(add-hook 'org-mode-hook (lambda () (linum-mode 0)))
+#+END_SRC
 ** Learning a New Programming Language is too Much Effort for an Editor
 *** Don't worry! Pretty much anything you will ever put in init.el will be from stackoverflow or similar
 *** You will most likely start with a near barebones Emacs, and then build up from there.
@@ -307,6 +328,11 @@ return $var + $var2;
 *** The only frontend for git that is actually more efficient than the command line
 ** Yasnippet
 *** Lets you expand common statements like for loops and fill in the gaps
+** Avy
+*** Lets you jump around a buffer in clever ways, kind of like searching but quicker
 ** Many Many More
-*** There are tons of language specific plugins and other fun stuff that can be ve
+*** There are tons of language specific plugins and other fun stuff that can be easily found
+*** Google "<language or setup you use> emacs " for good examples
+*** Alternatively, just browse through "package-list-packages" and see what's available
+*** There are a few niche packages that are not on MELPA, so installing them has more steps but is still easy.
 

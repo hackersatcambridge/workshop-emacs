@@ -1,0 +1,65 @@
+
+columnar_transposition_cipher.java,896
+public class ColumnarTranspositionCipher 5,130
+    private static String keyword;6,173
+    private static Object[][] table;7,208
+    private static String abecedarium;8,245
+    public static final String ABECEDARIUM=9,284
+    private static final String ENCRYPTION_FIELD=10,399
+    private static final char ENCRYPTION_FIELD_CHAR=11,455
+    public static String encrpyter(18,790
+    public static String encrpyter(39,1631
+    public static String decrypter(60,2482
+    private static Object[][] tableBuilder(73,2982
+    private static int rows(95,3904
+    private static Object[] findElements(102,4166
+    private static Object[][] sortTable(111,4501
+    private static Object[] getColumn(128,5189
+    private static void switchColumns(135,5435
+    private static void abecedariumBuilder(145,5895
+    private static void showTable(151,6058
+    public static void main(159,6299
+
+machine_learning.cpp,154
+#define NO_SCREEN_OUT 6,71
+Population *lander_test(lander_test7,94
+bool lander_evaluate(98,2101
+double go_lander(132,3102
+int lander_epoch(195,5668
+
+game_of_life.py,88
+def create_canvas(40,906
+def seed(45,1016
+def run(51,1164
+def __judge_point(73,1842
+
+programming.poem,25
+Function defines 27,547
+
+README.md,1831
+this first book proposes, first in brief, the whole subject, mans disobedience, and the loss thereupon of paradise wherein he was plac't: then touches the prime cause of his fall, the serpent, or rather satan in the serpent; who revolting from god, and drawing to his side many legions of angels, was by the command of god driven out of heaven with all his crew into the great deep. which action past over, the poem hasts into the midst of things, presenting satan with his angels now fallen into hell, describ'd here, not in the center (for heaven and earth may be suppos'd as yet not made, certainly not yet accurst) but in a place of utter darkness, fitliest call'd chaos: here satan with his angels lying on the burning lake, thunder-struck and astonisht, after a certain space recovers, as from confusion, calls up him who next in order and dignity lay by him; they confer of thir miserable fall. satan awakens all his legions, who lay till then in the same manner confounded;12,579
+that comes to all;81,5168
+fearless, endanger'd heav'ns perpetual king;148,8036
+behind him cast;308,14928
+smote on him sore besides, vaulted with fire;320,15435
+on the firm brimstone, and fill all the plain;373,17736
+thir great commander;381,18104
+and powers that earst in heaven sat on thrones;383,18188
+abominations;412,19482
+of moloch homicide, lust hard by hate;440,20680
+like cumbrous flesh;451,21162
+thir boasted parents;533,24689
+of doric land;542,25094
+all these and more came flocking;545,25225
+in loss it self;549,25431
+his mighty standard;556,25760
+begirt with british and armoric knights;604,27909
+stood like a towr;614,28310
+that riches grow in hell;717,32831
+with golden architrave;741,33880
+in ancient greece;765,34915
+a summers day;770,35138
+erring; for he withr he wit773,35273
+swarm'dswarm'802,36586
+
+emacs_presentation.tex,0

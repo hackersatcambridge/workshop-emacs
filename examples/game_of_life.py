@@ -122,4 +122,4 @@ if __name__ == '__main__':
             ax.cla()
     except KeyboardInterrupt:
         # do nothing.
-pass
+        pass
