@@ -31,9 +31,10 @@
 **** An alternate way to press M-x is to first press escape then press x, which is especially useful when using Emacs on really old systems
 *** C-M-x is just pressing x while holding both control and meta
 *** Some commands will require you to type text after, which will be prompted on the bottom bar.
-** Three Extremely Useful Commands
+** Four Extremely Useful Commands
 **** Save!!!!!! : C-x C-s
 **** Open File!!!!!! : C-x C-f
+**** Cancel any command! If you are ever stuck in a command just hit C-g
 **** Auto-complete: Tab when used with other commands, or M-/ in a buffer!
 ** Basic Movement
 *** Characters, Words, and Lines
