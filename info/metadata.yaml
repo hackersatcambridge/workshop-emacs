@@ -8,11 +8,9 @@ contributors:
   - Dimitrije Erdeljan
 
 # (optional) Links that attendees may wish to read after the workshop
-# further_reading_links:
-#   - text: Sampling
-#     url: https://en.wikipedia.org/wiki/Sampling_(music)
-#   - text: Best websites a programmer should visit
-#     url: https://github.com/sdmg15/Best-websites-a-programmer-should-visit#coding-practice-for-beginners
+further_reading_links:
+   - text: Feedback Form 8/2/18
+     url: https://goo.gl/forms/U8GfFXha6R51EG2o1
 
 # (optional) Link to a video recording of the workshop
 # recording_link: https://www.youtube.com/watch?v=FHG2oizTlpY
