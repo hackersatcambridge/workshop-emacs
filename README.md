@@ -1,11 +1,11 @@
-# emacs-workshop
+# [Emacs](https://hackersatcambridge.com/workshops/emacs)
 [Cheat sheet for you to use](http://www.rgrjr.com/emacs/emacs_cheat.html)
 
 
-this repository is a collection of files that will be used with the emacs workshop. 
+this repository is a collection of files that will be used with the [emacs workshop](https://hackersatcambridge.com/workshops/emacs).
 it is essentially a bunch of files of different formats and styles (including this one), some of which contain errors that can be fixed.
-the file ending in ".org" is the presentation itself. this file also does not have very good capitilization 
-and slightly odd line breaks, but this can be fixed with only a few keystrokes! 
+the file ending in ".org" is the presentation itself. this file also does not have very good capitilization
+and slightly odd line breaks, but this can be fixed with only a few keystrokes!
 this is also a bit easier to do with some regular expression searching.
 
 
@@ -821,4 +821,4 @@ the great seraphic lords and cherubim
 in close recess and secret conclave sat [ 795 ]
 a thousand demy-gods on golden seats,
 frequent and full. after short silence then
-and summons read, the great consult began. 
+and summons read, the great consult began.
